@@ -14,7 +14,7 @@ def sign_up():
 
             username = data['username']
             password = data['password']
-            user = User(username =  username, password = password)
+            user = User(email=username, password=password)
             db.session.add(user)
             db.session.commit()
             return jsonify({'message': f"Successfully signed up {username}"}), 200 # OK
