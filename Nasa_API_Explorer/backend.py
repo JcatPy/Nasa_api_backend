@@ -27,3 +27,17 @@ def sign_up():
         # You can return a simple message or some default data for the GET request
         return jsonify({'message': 'Welcome to the sign-up page. Please send a POST request to sign up.'})
 
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        try:
+            data = request.json
+            if not data or 'username' not in data:
+                return jsonify({'error': 'Username is required'}), 400  # Bad request
+
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500 # Internal server error
+
+    elif request.method == 'GET':
+        return jsonify({'message': 'Welcome to the login page. Please send a POST request to log in.'})
