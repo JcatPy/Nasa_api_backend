@@ -1,11 +1,10 @@
 import requests
 import os
 
-api_key = 'b5Dn6cS94857ydQGnVWTTNT8fCIAmLtNAsyalhlo'
+api_key = os.environ.get('api_key')
 
 def get_natural_disasters_by_events(limit=10, days=6 ):
     list_of_natural_disasters = []
-    event_description = {}
 
     # get the url for the eonet api to get the natural disasters according to the givine limit and days
     url = (f'https://eonet.gsfc.nasa.gov/api/v2.1/events?api_key={api_key}&source=InciWeb,Eo&status=closed'
