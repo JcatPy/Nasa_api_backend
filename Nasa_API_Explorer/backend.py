@@ -3,6 +3,7 @@ from . import app
 from .models import User
 from . import db
 from flask_login import login_user, current_user, logout_user, login_required
+from .Nasa_EONET import *
 
 @app.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
@@ -59,3 +60,12 @@ def logout():
     logout_user()
     return jsonify({'message': 'Successfully logged out'}), 200
 
+@app.route('/natural_hazards_events', methods=['GET'])
+def natural_hazards_events():
+    events = get_natural_disasters_by_events()
+    return jsonify({'events': events}), 200
+
+@app.route('/natural_hazards_categories', methods=['GET'])
+def natural_hazards_categories():
+    category = get_natural_disasters_by_categories()
+    return jsonify({'categories': category}), 200
